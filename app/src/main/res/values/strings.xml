@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Copyright (C) 2014 OTA Update Center
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+
+    <string name="app_name">OTA Updater</string>
+    <string name="app_license">License</string>
+    <string name="app_contrib">Contributors</string>
+    <string name="app_downloads">Downloads</string>
+    <string name="app_settings">Settings</string>
+
+    <string name="download">Download</string>
+    <string name="retry">Retry</string>
+    <string name="flash">Flash</string>
+    <string name="delete">Delete</string>
+    <string name="ignore">Ignore</string>
+    <string name="exit">Exit</string>
+    <string name="close">Close</string>
+    <string name="hide">Hide</string>
+    <string name="install">Install</string>
+    <string name="login">Login</string>
+    <string name="icon">Icon</string>
+
+    <string name="main_device">Device</string>
+    <string name="main_rom">ROM</string>
+    <string name="main_kernel">Kernel</string>
+    <string name="main_about">About</string>
+    <string name="main_otaid">OTA Updater ID</string>
+
+    <string name="rom_download_ticker">OTA ROM Update Available</string>
+    <string name="rom_download_title">OTA ROM Update Available: %1$s</string>
+    <string name="rom_download_details">An OTA ROM update is available\n\nVersion: %1$s\nChangelog:\n%2$s</string>
+    <string name="rom_download_progress">OTA ROM Update Downloading</string>
+    <string name="rom_download_failed">OTA ROM Download Failed</string>
+    <string name="rom_download_done">OTA ROM Download Complete</string>
+    <string name="rom_download_alert_title">Downloading ROM update (%1$s version %2$s)</string>
+    <string name="rom_toast_no_update">There is no ROM update at this time</string>
+    <string name="rom_update_to">This update will update your ROM (%1$s) to version %2$s</string>
+    <string name="rom_version">ROM Version</string>
+    <string name="rom_unsupported">Unsupported ROM</string>
+    <string name="rom_unsupported_summary">The ROM developer has not enabled support for the OTA Updater! Please ask them (kindly) to add support before using this app!\n\n(rom.ota.prop missing)</string>
+
+    <string name="kernel_download_ticker">OTA ROM Update Available</string>
+    <string name="kernel_download_title">OTA Kernel Update Available: %1$s</string>
+    <string name="kernel_download_details">An OTA Kernel update is available\n\nVersion: %1$s\nChangelog:\n%2$s</string>
+    <string name="kernel_download_progress"> OTA Kernel Update Downloading</string>
+    <string name="kernel_download_failed">OTA Kernel Download Failed</string>
+    <string name="kernel_download_done">OTA Kernel Download Complete</string>
+    <string name="kernel_download_alert_title">Downloading kernel update (%1$s version %2$s)</string>
+    <string name="kernel_toast_no_update">There is no kernel update at this time</string>
+    <string name="kernel_update_to">This update will update your kernel (%1$s) to version %2$s</string>
+    <string name="kernel_version">Kernel Version</string>
+    <string name="kernel_version_unknown">Unknown Kernel Version</string>
+    <string name="kernel_unsupported">Unsupported Kernel</string>
+    <string name="kernel_unsupported_summary">The Kernel developer has not enabled support for the OTA Updater! Please ask them (kindly) to add support before using this app!\n\n(kernel.ota.prop missing)</string>
+
+    <string name="alert_nodata_title">No Data Connection!</string>
+    <string name="alert_nodata_message">You have no data connection.\nPlease turn on Wi-Fi or Mobile Data in order to check for and download OTA updates.</string>
+    <string name="alert_nowifi_title">No Wi-Fi Connection!</string>
+    <string name="alert_nowifi_message">You are on a mobile connection.\nThis app uses data heavily to download ROM updates.\nIt is recommended to turn on Wi-Fi to avoid overage charges.</string>
+    <string name="alert_wifi_settings">Wi-Fi Settings</string>
+
+    <string name="alert_login_title">Log In to your account</string>
+    <string name="alert_logging_in">Logging in…</string>
+    <string name="alert_login_message">Please use the login credentials you used when registering on the OTA Update Center website</string>
+    <string name="alert_login_user_hint">Username</string>
+    <string name="alert_login_pass_hint">Password</string>
+
+    <string name="alert_install_title">Install ZIP</string>
+    <string name="alert_install_message">Installing this update will reboot into recovery to flash the ZIP file. After installation, the system will automatically reboot.</string>
+    <string name="alert_noinstall_message">Unfortunately, ROMs on your device must be flashed manually.\nPlease use the correct method for your device to flash the ROM\n\nThe .zip file is located at: %1$s</string>
+    <string name="alert_update_title">ROM update available!</string>
+    <string name="alert_downloading">Downloading…</string>
+    <string name="alert_unsupported_title">Unsupported ROM/Kernel</string>
+    <string name="alert_unsupported_message">The ROM or Kernel developer has not enabled support in the ROM and/or Kernel for the OTA Updater! Please ask them (kindly) to add support before using this app!\n\n(rom.ota.prop and kernel.ota.prop missing)</string>
+    <string name="alert_changelog">View Changelog</string>
+    <string name="alert_changelog_title">Changelog for version %1$s</string>
+
+    <string name="menu_account">Account</string>
+    <string name="menu_downloads">Downloads</string>
+    <string name="menu_settings">Settings</string>
+
+    <string name="notif_source">OTA Update</string>
+    <string name="notif_completed">Download finished. Tap to flash update.</string>
+
+    <string name="toast_delete">File deleted successfully</string>
+    <string name="toast_delete_error">There was a problem while deleting the selected file</string>
+    <string name="toast_file_error">Error loading file</string>
+    <string name="toast_nosd_shared">Your SD card is unavailable - mounted as USB Storage</string>
+    <string name="toast_nosd_error">You SD card is unavailable</string>
+    <string name="toast_blank_userpass_error">Please enter your username and password!!</string>
+    <string name="toast_update_fetch_error">There was an error fetching update information</string>
+    <string name="toast_downloading">Your download is still running, check notifications for progress…</string>
+
+    <string name="about_ota_title">OTA Updater</string>
+    <string name="about_ota_summary">Copyright © 2014 - OTA Update Center\nFully open-source\nTap to visit our website</string>
+    <string name="about_version_title">Version</string>
+    <string name="about_version_unknown">Unknown Version (error in package manager)</string>
+    <string name="about_license_title">Open-Source License</string>
+    <string name="about_contrib_title">Contributors</string>
+    <string name="about_feedback_title">Feedback</string>
+    <string name="about_uptodate">Keep Up-to-Date!</string>
+    <string name="about_follow_title">Follow us on Google+</string>
+
+    <string name="updates_avail_title">Available Updates</string>
+    <string name="updates_checking">Checking for available updates…</string>
+    <string name="updates_none">No update available. Tap to check manually.</string>
+    <string name="update_fetch_error">Error fetching update info: %1$s</string>
+    <string name="updates_new">New update: %1$s (version %2$s)\nTap to download/flash!</string>
+
+    <string name="downloads_rom_label">Downloading ROM Update</string>
+    <string name="downloads_kernel_label">Downloading Kernel Update</string>
+    <string name="downloads_size_progress_b">%1$.1f%% (%2$d / %3$d bytes)</string>
+    <string name="downloads_size_progress_kb">%1$.1f%% (%2$d / %3$d KB)</string>
+    <string name="downloads_size_progress_mb">%1$.1f%% (%2$d / %3$d MB)</string>
+    <string name="downloads_size_progress_gb">%1$.1f%% (%2$d / %3$d GB)</string>
+    <string name="downloads_size_progress_unknown_b">%1$.1f%% (%2$d bytes)</string>
+    <string name="downloads_size_progress_unknown_kb">%1$.1f%% (%2$d KB)</string>
+    <string name="downloads_size_progress_unknown_mb">%1$.1f%% (%2$d MB)</string>
+    <string name="downloads_size_progress_unknown_gb">%1$.1f%% (%2$d GB)</string>
+    <string name="downloads_starting">Starting Download…</string>
+    <string name="downloads_paused_wifi">Waiting for Wi-Fi…</string>
+    <string name="downloads_paused_network">Waiting for Data connection…</string>
+    <string name="downloads_paused_retry">Waiting to retry download…</string>
+    <string name="downloads_paused_unknown">Waiting for download to proceed…</string>
+    <string name="downloads_failed_http">Download failed: HTTP Error</string>
+    <string name="downloads_failed_mount">Download failed: No storage device found</string>
+    <string name="downloads_failed_space">Download failed: Not enough space</string>
+    <string name="downloads_failed_fileexists">Download failed: file already exists</string>
+    <string name="downloads_failed_resume">Download failed: cannot resume download</string>
+    <string name="downloads_failed_md5">Download failed: MD5 error - invalid download</string>
+    <string name="downloads_failed_unknown">Download failed</string>
+    <string name="downloads_none">No Downloads Found</string>
+    <string name="downloads_no_status">Unable to get download status</string>
+    <string name="downloads_changelog_title">Changelog:</string>
+    <string name="downloads_complete">Finished! Ready to flash update!</string>
+    <string name="downloads_file">%1$s (v%2$s)</string>
+    <string name="downloads_file_nover">%1$s</string>
+
+    <string name="settings_title">OTA Updater Settings</string>
+    <string name="settings_account_title">OTA Update Center account</string>
+    <string name="settings_account_summary">Log into your OTA Update Center account</string>
+    <string name="settings_account_summary_loggedin">Logged in as: %1$s\nTap to view details or log out.</string>
+    <string name="settings_notif_title">Notify me of new updates</string>
+    <string name="settings_notif_summary_off">Update notifications will not be shown\nYou will have to open the app manually to see if there are updates</string>
+    <string name="settings_notif_summary_on">Update notifications will be shown</string>
+    <string name="settings_wifidl_title">Downloads on Wi-Fi only</string>
+    <string name="settings_wifidl_summary_on">Updates will only be downloaded when a Wi-Fi connection is available</string>
+    <string name="settings_wifidl_summary_off">Updates will be downloaded on whatever connection is available.\n\nWARNING: Updates will download on the mobile network if Wi-Fi is unavailable. The updates may be quite large and possibly result in overage charges.</string>
+    <string name="settings_autodl_title">Auto-download updates</string>
+    <string name="settings_autodl_summary_off">Updates will not be downloaded automatically.</string>
+    <string name="settings_autodl_summary_on">Updates will be downloaded automatically.</string>
+    <string name="settings_resetwarn_title">Reset ignored warnings</string>
+    <string name="settings_resetwarn_summary">Any warnings that have been ignored will be shown again.</string>
+    <string name="settings_support">Support Development</string>
+    <string name="settings_prokey_title">Buy PRO Key</string>
+    <string name="settings_prokey_title_pro">PRO Key</string>
+    <string name="settings_prokey_summary">Buying a PRO Key will disable ads and help us pay the costs of running this service</string>
+    <string name="settings_prokey_summary_pro">Thank you for buying the PRO Key.\nWe appreciate your support!</string>
+    <string name="settings_prokey_summary_nomarket">Unfortunately, you cannot buy a PRO Key because you do not have the Play Store installed.</string>
+    <string name="settings_prokey_summary_redeemed">You have redeemed a PRO Key code!\nCode used: %1$s</string>
+    <!--<string name="settings_prokey_summary_verify">Thank you for buying the PRO Key!\nVerification did not complete last time, tap to try again..</string>-->
+    <!--<string name="settings_prokey_summary_verifying">Thank you for buying the PRO Key!\nKey verification in progress…</string>-->
+    <string name="settings_prokey_redeeming">Redeeming…</string>
+    <string name="settings_donate_title">Donate</string>
+    <string name="settings_donate_summary">Any donations are greatly accepted and go directly to pay hosting and development costs</string>
+
+    <string name="prokey_thanks">Thank you for buying the PRO Key!!!\n\nAll of the money goes to pay for hosting costs in order to provide you with the best possible service.\n\nPlease enjoy all of the features of our app, along with no ads!\nThanks again for the support!</string>
+    <string name="prokey_redeemed_thanks">You have redeemed a PRO Key code!\n\nThank you for your support. Please spread the word about this app so we can continue to grow and provide the best possible OTA service!</string>
+    <string name="prokey_error_init">Error starting PRO Key purchase! Try again later.</string>
+    <string name="prokey_error_cancelled">PRO Key purchase cancelled!</string>
+    <string name="prokey_error_other">Error occurred during PRO Key purchase!</string>
+    <string name="prokey_success">PRO Key purchased successfully! Thank you!</string>
+    <string name="prokey_only_feature_title">PRO-only Feature</string>
+    <string name="prokey_only_feature_message">This feature is only available to PRO Key users.\nPlease obtain a PRO Key in order to use this feature.</string>
+    <string name="prokey_only_get">Get PRO Key</string>
+
+    <string name="unknown_error">An unknown error has occurred!</string>
+
+</resources>
