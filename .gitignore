@@ -1,3 +1,8 @@
+*.apk
+*.ap_
+*.dex
+*.class
+
 app/build
 build
 .idea/workspace.xml

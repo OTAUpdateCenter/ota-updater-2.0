@@ -9,10 +9,24 @@ android {
         targetSdkVersion 19
     }
 
+    signingConfigs {
+        if (System.getenv("SIGNING_KEYSTORE") != null) {
+            release {
+                storeFile file(System.getenv("SIGNING_KEYSTORE"))
+                storePassword System.getenv("SIGNING_KEYSTORE_PASS")
+                keyAlias System.getenv("SIGNING_KEY_NAME")
+                keyPassword System.getenv("SIGNING_KEY_PASS")
+            }
+        }
+    }
+
     buildTypes {
         release {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            if (System.getenv("SIGNING_KEYSTORE") != null) {
+                signingConfig signingConfigs.release
+            }
         }
     }
 }
