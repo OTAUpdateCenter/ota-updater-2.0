@@ -114,7 +114,7 @@ public class KernelInfo extends BaseInfo {
 
     @Override
     protected int getDownloadDialogMessageStr() {
-        return R.string.rom_update_to;
+        return R.string.kernel_update_to;
     }
 
     @Override
