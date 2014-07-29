@@ -6,11 +6,11 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent">
 
-    <!--<com.google.android.gms.ads.AdView-->
-        <!--android:id="@+id/ad_view"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--ads:adUnitId="ca-app-pub-0361534644858126/7580389175"-->
-        <!--ads:adSize="SMART_BANNER" />-->
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/ad_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ads:adUnitId="ca-app-pub-0361534644858126/7580389175"
+        ads:adSize="SMART_BANNER" />
 
 </LinearLayout>

@@ -279,7 +279,7 @@ public class Utils {
                 try {
                     if (PropUtils.isRomOtaEnabled()) {
                         RomInfo info = RomInfo.FACTORY.fromJSON(respObj.getJSONObject(RomInfo.KEY_NAME));
-                        if (info.isUpdate()) {
+                        if (info != null && info.isUpdate()) {
                             cfg.storeRomUpdate(info);
                             if (cfg.getShowNotif()) {
                                 info.showUpdateNotif(ctx);
@@ -294,7 +294,7 @@ public class Utils {
 
                     if (PropUtils.isKernelOtaEnabled()) {
                         KernelInfo info = KernelInfo.FACTORY.fromJSON(respObj.getJSONObject(KernelInfo.KEY_NAME));
-                        if (info.isUpdate()) {
+                        if (info != null && info.isUpdate()) {
                             cfg.storeKernelUpdate(info);
                             if (cfg.getShowNotif()) {
                                 info.showUpdateNotif(ctx);
