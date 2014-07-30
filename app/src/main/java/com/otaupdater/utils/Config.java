@@ -30,7 +30,7 @@ public class Config {
 
     public static final String GPLUS_URL = "https://plus.google.com/102074511541445644953/posts";
 
-    public static final String SITE_BASE_URL = "http://vlinuxbox:8080/";
+    public static final String SITE_BASE_URL = "https://www.otaupdatecenter.pro/";
     public static final String WEB_FEEDBACK_URL = "contact-us";
     public static final String DONATE_URL = "donate";
     public static final String LOGIN_URL = "device/user/login";
