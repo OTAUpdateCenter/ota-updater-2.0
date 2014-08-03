@@ -39,7 +39,6 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.otaupdater.R;
 import com.otaupdater.SettingsActivity;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -276,38 +275,34 @@ public class Utils {
             public void onSuccess(String message, JSONObject respObj) {
                 cfg.setPingedCurrent();
 
-                try {
-                    if (PropUtils.isRomOtaEnabled()) {
-                        RomInfo info = RomInfo.FACTORY.fromJSON(respObj.getJSONObject(RomInfo.KEY_NAME));
-                        if (info != null && info.isUpdate()) {
-                            cfg.storeRomUpdate(info);
-                            if (cfg.getShowNotif()) {
-                                info.showUpdateNotif(ctx);
-                            } else {
-                                Log.v(Config.LOG_TAG + "GCMRegister", "got rom update response, notif not shown");
-                            }
+                if (PropUtils.isRomOtaEnabled()) {
+                    RomInfo info = RomInfo.FACTORY.fromJSON(respObj.optJSONObject(RomInfo.KEY_NAME));
+                    if (info != null && info.isUpdate()) {
+                        cfg.storeRomUpdate(info);
+                        if (cfg.getShowNotif()) {
+                            info.showUpdateNotif(ctx);
                         } else {
-                            cfg.clearStoredRomUpdate();
-                            RomInfo.FACTORY.clearUpdateNotif(ctx);
+                            Log.v(Config.LOG_TAG + "GCMRegister", "got rom update response, notif not shown");
                         }
+                    } else {
+                        cfg.clearStoredRomUpdate();
+                        RomInfo.FACTORY.clearUpdateNotif(ctx);
                     }
+                }
 
-                    if (PropUtils.isKernelOtaEnabled()) {
-                        KernelInfo info = KernelInfo.FACTORY.fromJSON(respObj.getJSONObject(KernelInfo.KEY_NAME));
-                        if (info != null && info.isUpdate()) {
-                            cfg.storeKernelUpdate(info);
-                            if (cfg.getShowNotif()) {
-                                info.showUpdateNotif(ctx);
-                            } else {
-                                Log.v(Config.LOG_TAG + "GCMRegister", "got kernel update response, notif not shown");
-                            }
+                if (PropUtils.isKernelOtaEnabled()) {
+                    KernelInfo info = KernelInfo.FACTORY.fromJSON(respObj.optJSONObject(KernelInfo.KEY_NAME));
+                    if (info != null && info.isUpdate()) {
+                        cfg.storeKernelUpdate(info);
+                        if (cfg.getShowNotif()) {
+                            info.showUpdateNotif(ctx);
                         } else {
-                            cfg.clearStoredKernelUpdate();
-                            KernelInfo.FACTORY.clearUpdateNotif(ctx);
+                            Log.v(Config.LOG_TAG + "GCMRegister", "got kernel update response, notif not shown");
                         }
+                    } else {
+                        cfg.clearStoredKernelUpdate();
+                        KernelInfo.FACTORY.clearUpdateNotif(ctx);
                     }
-                } catch (JSONException e) {
-                    Log.w(Config.LOG_TAG + "GCMRegister", "malformed server response: " + e.getMessage());
                 }
             }
 
