@@ -16,7 +16,6 @@
 
 package com.otaupdater.utils;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -30,8 +29,6 @@ import android.os.Build;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -62,6 +59,8 @@ public class Utils {
 //    protected static final int REQUEST_CODE_RECOVER_PLAY_SERVICES = 1001;
     private static final Random random = new SecureRandom();
     private static final SimpleDateFormat OTA_DATE = new SimpleDateFormat("yyyyMMdd-kkmm", Locale.US);
+
+    private static Boolean cachedPlayServicesCheck = null;
 
     private Utils() { }
 
@@ -139,52 +138,57 @@ public class Utils {
         return null;
     }
 
-    public static void toastWrapper(final Activity activity, final CharSequence text, final int duration) {
-        activity.runOnUiThread(new Runnable() {
-            @Override public void run() {
-                Toast.makeText(activity, text, duration).show();
-            }
-        });
-    }
-
-    public static void toastWrapper(final Activity activity, final int resId, final int duration) {
-        activity.runOnUiThread(new Runnable() {
-            @Override public void run() {
-                Toast.makeText(activity, resId, duration).show();
-            }
-        });
-    }
-
-    public static void toastWrapper(final View view, final CharSequence text, final int duration) {
-        view.post(new Runnable() {
-            @Override public void run() {
-                Toast.makeText(view.getContext(), text, duration).show();
-            }
-        });
-    }
-
-    public static void toastWrapper(final View view, final int resId, final int duration) {
-        view.post(new Runnable() {
-            @Override public void run() {
-                Toast.makeText(view.getContext(), resId, duration).show();
-            }
-        });
-    }
+//    public static void toastWrapper(final Activity activity, final CharSequence text, final int duration) {
+//        activity.runOnUiThread(new Runnable() {
+//            @Override public void run() {
+//                Toast.makeText(activity, text, duration).show();
+//            }
+//        });
+//    }
+//
+//    public static void toastWrapper(final Activity activity, final int resId, final int duration) {
+//        activity.runOnUiThread(new Runnable() {
+//            @Override public void run() {
+//                Toast.makeText(activity, resId, duration).show();
+//            }
+//        });
+//    }
+//
+//    public static void toastWrapper(final View view, final CharSequence text, final int duration) {
+//        view.post(new Runnable() {
+//            @Override public void run() {
+//                Toast.makeText(view.getContext(), text, duration).show();
+//            }
+//        });
+//    }
+//
+//    public static void toastWrapper(final View view, final int resId, final int duration) {
+//        view.post(new Runnable() {
+//            @Override public void run() {
+//                Toast.makeText(view.getContext(), resId, duration).show();
+//            }
+//        });
+//    }
 
     public static boolean checkPlayServices(Context ctx) {
-        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(ctx);
-        if (resultCode != ConnectionResult.SUCCESS) {
-            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
-                Log.v(Config.LOG_TAG + "checkPlayServices", "Play Services error: " + GooglePlayServicesUtil.getErrorString(resultCode));
+        if (cachedPlayServicesCheck == null) {
+            int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(ctx);
+            if (resultCode == ConnectionResult.SUCCESS) {
+                cachedPlayServicesCheck = true;
+            } else {
+                if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                    Log.v(Config.LOG_TAG + "checkPlayServices", "Play Services error: " + GooglePlayServicesUtil.getErrorString(resultCode));
 //                if (ctx instanceof Activity) {
 //                    GooglePlayServicesUtil.getErrorDialog(resultCode, (Activity) ctx, REQUEST_CODE_RECOVER_PLAY_SERVICES).show();
 //                }
-            } else {
-                Log.v(Config.LOG_TAG + "checkPlayServices", "Device not supported");
+                } else {
+                    Log.v(Config.LOG_TAG + "checkPlayServices", "Device not supported");
+                }
+                cachedPlayServicesCheck = false;
             }
-            return false;
         }
-        return true;
+
+        return cachedPlayServicesCheck;
     }
 
     public static boolean dataAvailable(Context ctx) {
