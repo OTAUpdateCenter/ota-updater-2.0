@@ -92,49 +92,46 @@ public class CheckinReceiver extends BroadcastReceiver {
             setDailyAlarm(context);
         }
 
-        if (PropUtils.isRomOtaEnabled() || PropUtils.isKernelOtaEnabled()) {
-            if (!Utils.registerForUpdates(context)) {
-                Log.v(Config.LOG_TAG + "Receiver", "No market, using pull method");
+        Utils.updateDeviceRegistration(context);
 
-                PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        if (!Utils.checkPlayServices(context)) {
+            Log.v(Config.LOG_TAG + "Receiver", "No market, using pull method");
 
-                if (PropUtils.isRomOtaEnabled()) {
-                    final WakeLock romWL = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, CheckinReceiver.class.getName());
-                    romWL.acquire();
+            PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
 
-                    APIUtils.fetchRomInfo(context, new BaseInfo.InfoLoadAdapter<RomInfo>(RomInfo.class, context) {
-                        @Override
-                        public void onInfoLoaded(RomInfo info) {
-                            ROMTab.notifyActiveFragment();
-                        }
+            if (PropUtils.isRomOtaEnabled()) {
+                final WakeLock romWL = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, CheckinReceiver.class.getName());
+                romWL.acquire();
 
-                        @Override
-                        public void onComplete(boolean success) {
-                            romWL.release();
-                        }
-                    });
-                }
+                APIUtils.fetchRomInfo(context, new BaseInfo.InfoLoadAdapter<RomInfo>(RomInfo.class, context) {
+                    @Override
+                    public void onInfoLoaded(RomInfo info) {
+                        ROMTab.notifyActiveFragment();
+                    }
 
-                if (PropUtils.isKernelOtaEnabled()) {
-                    final WakeLock kernelWL = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, CheckinReceiver.class.getName());
-                    kernelWL.acquire();
-
-                    APIUtils.fetchKernelInfo(context, new BaseInfo.InfoLoadAdapter<KernelInfo>(KernelInfo.class, context) {
-                        @Override
-                        public void onInfoLoaded(KernelInfo info) {
-                            KernelTab.notifyActiveFragment();
-                        }
-
-                        @Override
-                        public void onComplete(boolean success) {
-                            kernelWL.release();
-                        }
-                    });
-                }
+                    @Override
+                    public void onComplete(boolean success) {
+                        romWL.release();
+                    }
+                });
             }
-        } else {
-            Utils.unregisterForUpdates(context);
-            Log.w(Config.LOG_TAG + "Receiver", "Unsupported ROM and Kernel");
+
+            if (PropUtils.isKernelOtaEnabled()) {
+                final WakeLock kernelWL = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, CheckinReceiver.class.getName());
+                kernelWL.acquire();
+
+                APIUtils.fetchKernelInfo(context, new BaseInfo.InfoLoadAdapter<KernelInfo>(KernelInfo.class, context) {
+                    @Override
+                    public void onInfoLoaded(KernelInfo info) {
+                        KernelTab.notifyActiveFragment();
+                    }
+
+                    @Override
+                    public void onComplete(boolean success) {
+                        kernelWL.release();
+                    }
+                });
+            }
         }
     }
 

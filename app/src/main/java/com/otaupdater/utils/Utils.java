@@ -214,63 +214,10 @@ public class Utils {
         return OTA_DATE.format(date);
     }
 
-    public static boolean registerForUpdates(Context ctx) {
-        if (!checkPlayServices(ctx)) return false;
-        gcmRegister(ctx);
-        return true;
-    }
-
-    public static void unregisterForUpdates(final Context ctx) {
-        if (!checkPlayServices(ctx)) return;
-
-        Log.v(Config.LOG_TAG + "GCMRegister", "updating GCM reg infos (unregister)");
-        APIUtils.unregisterGCM(ctx, null);
-    }
-
-    public static void gcmRegister(final Context ctx) {
-        final Config cfg = Config.getInstance(ctx);
-        String regId = cfg.getGcmRegistrationId();
-
-        if (regId == null) {
-            Log.v(Config.LOG_TAG + "GCMRegister", "Not registered, registering...");
-            new AsyncTask<Void, Void, Void>() {
-                @Override
-                protected Void doInBackground(Void... params) {
-                    try {
-                        GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(ctx);
-                        String regID = gcm.register(Config.GCM_SENDER_ID);
-
-                        cfg.setGcmRegistrationId(regID);
-                        Log.v(Config.LOG_TAG + "GCMRegister", "GCM registered");
-
-                        updateGCMRegistration(ctx);
-                    } catch (Exception ex) {
-                        Log.e(Config.LOG_TAG + "GCMRegister", "Error registering GCM: " + ex.getMessage());
-                    }
-                    return null;
-                }
-            }.execute();
-        } else if (!cfg.upToDate()) {
-            Log.v(Config.LOG_TAG + "GCMRegister", "Already registered, out-of-date");
-            cfg.setValuesToCurrent();
-            updateGCMRegistration(ctx);
-        } else if (cfg.needPing()) {
-            Log.v(Config.LOG_TAG + "GCMRegister", "Already registered, need to ping");
-            APIUtils.doPing(ctx, new APIUtils.APIAdapter() {
-                @Override
-                public void onSuccess(String message, JSONObject respObj) {
-                    cfg.setPingedCurrent();
-                }
-            });
-        } else {
-            Log.v(Config.LOG_TAG + "GCMRegister", "Already registered, no ping necessary");
-        }
-    }
-
-    protected static void updateGCMRegistration(final Context ctx) {
+    public static void updateDeviceRegistration(final Context ctx) {
         final Config cfg = Config.getInstance(ctx);
 
-        APIUtils.updateGCMRegistration(ctx, new APIUtils.APIAdapter() {
+        final APIUtils.APIAdapter regCallback = new APIUtils.APIAdapter() {
             @Override
             public void onSuccess(String message, JSONObject respObj) {
                 cfg.setPingedCurrent();
@@ -282,7 +229,7 @@ public class Utils {
                         if (cfg.getShowNotif()) {
                             info.showUpdateNotif(ctx);
                         } else {
-                            Log.v(Config.LOG_TAG + "GCMRegister", "got rom update response, notif not shown");
+                            Log.v(Config.LOG_TAG + "DeviceRegister", "got rom update response, notif not shown");
                         }
                     } else {
                         cfg.clearStoredRomUpdate();
@@ -297,7 +244,7 @@ public class Utils {
                         if (cfg.getShowNotif()) {
                             info.showUpdateNotif(ctx);
                         } else {
-                            Log.v(Config.LOG_TAG + "GCMRegister", "got kernel update response, notif not shown");
+                            Log.v(Config.LOG_TAG + "DeviceRegister", "got kernel update response, notif not shown");
                         }
                     } else {
                         cfg.clearStoredKernelUpdate();
@@ -309,9 +256,61 @@ public class Utils {
             @Override
             public void onError(String message, JSONObject respObj) {
                 cfg.setGcmRegistrationId(null); //TODO maybe do something better?
-                Log.w(Config.LOG_TAG + "GCMRegister", "error registering with server: " + message);
+                Log.w(Config.LOG_TAG + "DeviceRegister", "error registering with server: " + message);
             }
-        });
+        };
+
+        if (checkPlayServices(ctx)) {
+            String regId = cfg.getGcmRegistrationId();
+            if (regId == null) {
+                Log.v(Config.LOG_TAG + "DeviceRegister", "Not registered, registering for GCM...");
+                new AsyncTask<Void, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        try {
+                            GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(ctx);
+                            String regID = gcm.register(Config.GCM_SENDER_ID);
+
+                            cfg.setGcmRegistrationId(regID);
+                            Log.v(Config.LOG_TAG + "DeviceRegister", "GCM registered");
+
+                            APIUtils.updateDeviceRegistration(ctx, regCallback);
+                        } catch (Exception ex) {
+                            Log.e(Config.LOG_TAG + "DeviceRegister", "Error registering GCM: " + ex.getMessage());
+                        }
+                        return null;
+                    }
+                }.execute();
+            } else if (!cfg.upToDate()) {
+                Log.v(Config.LOG_TAG + "DeviceRegister", "Already GCM registered, out-of-date");
+                cfg.setValuesToCurrent();
+                APIUtils.updateDeviceRegistration(ctx, regCallback);
+            } else if (cfg.needPing()) {
+                Log.v(Config.LOG_TAG + "DeviceRegister", "Already GCM registered, need to ping");
+                APIUtils.doPing(ctx, new APIUtils.APIAdapter() {
+                    @Override
+                    public void onSuccess(String message, JSONObject respObj) {
+                        cfg.setPingedCurrent();
+                    }
+                });
+            } else {
+                Log.v(Config.LOG_TAG + "DeviceRegister", "Already GCM registered, no ping necessary");
+            }
+        } else if (!cfg.upToDate()) {
+            Log.v(Config.LOG_TAG + "DeviceRegister", "Already registered, out-of-date");
+            cfg.setValuesToCurrent();
+            APIUtils.updateDeviceRegistration(ctx, regCallback);
+        } else if (cfg.needPing()) {
+            Log.v(Config.LOG_TAG + "DeviceRegister", "Already registered, need to ping");
+            APIUtils.doPing(ctx, new APIUtils.APIAdapter() {
+                @Override
+                public void onSuccess(String message, JSONObject respObj) {
+                    cfg.setPingedCurrent();
+                }
+            });
+        } else {
+            Log.v(Config.LOG_TAG + "DeviceRegister", "Already registered, no ping necessary");
+        }
     }
 
     private static String device = null;

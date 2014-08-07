@@ -189,10 +189,6 @@ public class Config {
         return gcmRegistrationId;
     }
 
-    public boolean isGcmRegistered() {
-        return gcmRegistrationId != null && (lastVersion == curVersion || gcmRegVersionOverride);
-    }
-
     public void setGcmRegistrationId(String id) {
         this.gcmRegistrationId = id;
         this.gcmRegVersionOverride = true;
@@ -297,18 +293,6 @@ public class Config {
         putBoolean("ignoredWifiWarn", ignored);
     }
 
-    public int getLastVersion() {
-        return lastVersion;
-    }
-
-    public String getLastDevice() {
-        return lastDevice;
-    }
-
-    public String getLastRomID() {
-        return lastRomID;
-    }
-
     public void setValuesToCurrent() {
         synchronized (PREFS) {
             SharedPreferences.Editor editor = PREFS.edit();
@@ -341,7 +325,7 @@ public class Config {
     }
 
     public boolean needPing() {
-        return isGcmRegistered() && (lastPingDate == null || (new Date().getTime() - lastPingDate.getTime()) > MIN_PING_TIME);
+        return lastPingDate == null || (new Date().getTime() - lastPingDate.getTime()) > MIN_PING_TIME;
     }
 
     public void setPingedCurrent() {

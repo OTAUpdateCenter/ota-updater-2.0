@@ -185,10 +185,10 @@ public class KernelTab extends ListFragment {
         Activity act = getActivity();
         if (info != null && info.isUpdate()) {
             setUpdateSummary(getString(R.string.updates_new, info.name, info.version));
-            if (act instanceof OTAUpdaterActivity) ((OTAUpdaterActivity) act).updateRomTabIcon(true);
+            if (act instanceof OTAUpdaterActivity) ((OTAUpdaterActivity) act).updateKernelTabIcon(true);
         } else {
             setUpdateSummary(R.string.updates_none);
-            if (act instanceof OTAUpdaterActivity) ((OTAUpdaterActivity) act).updateRomTabIcon(false);
+            if (act instanceof OTAUpdaterActivity) ((OTAUpdaterActivity) act).updateKernelTabIcon(false);
             Toast.makeText(act, R.string.kernel_toast_no_update, Toast.LENGTH_SHORT).show();
         }
     }

@@ -318,7 +318,7 @@ public abstract class BaseInfo implements Parcelable, Serializable {
         }
 
         public T fromJSON(JSONObject json) {
-            if (json == null || json.length() == 0) return null;
+            if (json == null || json.length() == 0 || json.has("error")) return null;
 
             try {
                 T info = CLASS.newInstance();

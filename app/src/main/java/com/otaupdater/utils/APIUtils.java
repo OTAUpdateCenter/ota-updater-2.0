@@ -44,7 +44,7 @@ public class APIUtils {
         new APITask(ctx, Config.CODE_REDEEM_URL, null, callback).execute();
     }
 
-    public static void updateGCMRegistration(Context ctx, APICallback callback) {
+    public static void updateDeviceRegistration(Context ctx, APICallback callback) {
         final Config cfg = Config.getInstance(ctx);
 
         JSONObject data = new JSONObject();
@@ -61,20 +61,7 @@ public class APIUtils {
         }
 
         new APITask(ctx, Config.GCM_REGISTER_URL, data, callback).execute();
-    }
 
-    public static void unregisterGCM(Context ctx, APICallback callback) {
-        final Config cfg = Config.getInstance(ctx);
-
-        JSONObject data = new JSONObject();
-        try {
-            data.put("device", Utils.getDevice());
-            data.put("reg_id", cfg.getGcmRegistrationId());
-            data.put("app_version", Integer.toString(Utils.getAppVersion(ctx)));
-        } catch (JSONException ignored) {
-        }
-
-        new APITask(ctx, Config.GCM_REGISTER_URL, data, callback).execute();
     }
 
     public static void doPing(Context ctx, APICallback callback) {
