@@ -47,6 +47,7 @@ public class Config {
     public static final String GCM_SENDER_ID = "1068482628480";
     public static final String OAUTH_CLIENT_ID = "1068482628480-jsufug7klk4b4ab2v6f83dtp5q38k74t.apps.googleusercontent.com";
 
+    public static final String OTA_FEATURE_KEY = "com.otaupdater.ota_feature";
     public static final String PROKEY_SKU = "prokey";
 
     public static final long MIN_PING_TIME = 604800000; // 1 week in ms

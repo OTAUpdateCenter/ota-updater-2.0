@@ -109,6 +109,8 @@
     <string name="about_ota_summary">Copyright © 2014 - OTA Update Center\nFully open-source\nTap to visit our website</string>
     <string name="about_version_title">Version</string>
     <string name="about_version_unknown">Unknown Version (error in package manager)</string>
+    <string name="about_ota_feature_missing_title">Missing OTA Feature File!!</string>
+    <string name="about_ota_feature_missing_summary">The feature XML file is missing from this ROM/Kernel. Without this file, you will not be able to update this app via the Play Store.\n\nPlease contact your ROM/Kernel developer and kindly ask them to add the file. Instructions are available on our website on how to do this.</string>
     <string name="about_license_title">Open-Source License</string>
     <string name="about_contrib_title">Contributors</string>
     <string name="about_feedback_title">Feedback</string>

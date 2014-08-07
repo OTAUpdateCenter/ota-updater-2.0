@@ -20,6 +20,7 @@ import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Bundle;
@@ -46,10 +47,13 @@ public class AboutTab extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Context ctx = getActivity().getApplicationContext();
+        PackageManager pm = ctx.getPackageManager();
+
         PackageInfo pInfo = null;
         try {
-            Context ctx = getActivity().getApplicationContext();
-            pInfo = ctx.getPackageManager().getPackageInfo(ctx.getPackageName(), 0);
+            pInfo = pm.getPackageInfo(ctx.getPackageName(), 0);
+
         } catch (NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -66,6 +70,13 @@ public class AboutTab extends ListFragment {
         item.put(KEY_TITLE, getString(R.string.about_version_title));
         item.put(KEY_SUMMARY, version);
         DATA.add(item);
+
+        if (!pm.hasSystemFeature(Config.OTA_FEATURE_KEY)) {
+            item = new HashMap<String, String>();
+            item.put(KEY_TITLE, getString(R.string.about_ota_feature_missing_title));
+            item.put(KEY_SUMMARY, getString(R.string.about_ota_feature_missing_summary));
+            DATA.add(item);
+        }
 
         item = new HashMap<String, String>();
         item.put(KEY_TITLE, getString(R.string.about_license_title));
