@@ -17,8 +17,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="com.otaupdater"
-    android:versionCode="202"
-    android:versionName="2.0.2">
+    android:versionCode="203"
+    android:versionName="2.0.3">
 
     <uses-feature android:name="com.otaupdater.ota_feature" android:required="true" />
 
