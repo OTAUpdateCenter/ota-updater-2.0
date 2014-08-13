@@ -129,6 +129,6 @@ public class KernelInfo extends BaseInfo {
 
     @Override
     protected String getPropVersion() {
-        return PropUtils.getKernelVersion();
+        return PropUtils.getKernelOtaVersion();
     }
 }

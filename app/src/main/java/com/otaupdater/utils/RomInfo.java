@@ -129,6 +129,6 @@ public class RomInfo extends BaseInfo {
 
     @Override
     protected String getPropVersion() {
-        return PropUtils.getRomVersion();
+        return PropUtils.getRomOtaVersion();
     }
 }
