@@ -15,6 +15,14 @@
      limitations under the License.
 -->
 
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--<style name="ProgressBar" parent="android:Widget.Material.ProgressBar.Horizontal"/>-->
+<resources xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.android.com/apk/res/android">
+    <style name="Theme.Otauc" parent="android:Theme.Material.Light">
+        <item name="android:colorPrimary">@color/primary</item>
+        <item name="android:colorPrimaryDark">@color/primary_dark</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:navigationBarColor">@color/primary</item>
+    </style>
+    <style name="ProgressBar" parent="android:Widget.Material.Light.ProgressBar.Horizontal"/>
 </resources>

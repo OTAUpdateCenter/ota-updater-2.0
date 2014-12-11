@@ -1,7 +1,3 @@
 <component name="CopyrightManager">
-  <settings default="OTA Apache">
-    <module2copyright>
-      <element module="Java and Resources" copyright="OTA Apache" />
-    </module2copyright>
-  </settings>
+  <settings default="" />
 </component>

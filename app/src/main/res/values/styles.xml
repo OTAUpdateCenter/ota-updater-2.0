@@ -14,7 +14,63 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+<resources xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.android.com/apk/res/android">
 
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
-    <style name="ProgressBar" parent="android:Widget.ProgressBar.Horizontal"/>
+    <style name="Theme.Otauc" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarItemBackground">@drawable/selectable_background_otauc</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu.Otauc</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Otauc</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Otauc</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNav.Otauc</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Transparent.Otauc</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top_otauc</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_otauc</item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Otauc</item>
+
+
+    </style>
+
+    <style name="ActionBar.Solid.Otauc" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
+        <item name="android:background">@drawable/ab_background_textured_otauc</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_otauc</item>
+        <item name="android:backgroundSplit">@drawable/ab_background_textured_otauc</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Otauc</item>
+    </style>
+
+    <style name="ActionBar.Transparent.Otauc" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@drawable/ab_transparent_otauc</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Otauc</item>
+    </style>
+
+    <style name="PopupMenu.Otauc" parent="@android:style/Widget.Holo.Light.ListPopupWindow">
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_otauc</item>
+    </style>
+
+    <style name="DropDownListView.Otauc" parent="@android:style/Widget.Holo.Light.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_otauc</item>
+    </style>
+
+    <style name="ActionBarTabStyle.Otauc" parent="@android:style/Widget.Holo.Light.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_otauc</item>
+    </style>
+
+    <style name="DropDownNav.Otauc" parent="@android:style/Widget.Holo.Light.Spinner">
+        <item name="android:background">@drawable/spinner_background_ab_otauc</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_otauc</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_otauc</item>
+    </style>
+
+    <style name="ProgressBar.Otauc" parent="@android:style/Widget.Holo.Light.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_otauc</item>
+    </style>
+
+    <style name="ActionButton.CloseMode.Otauc" parent="@android:style/Widget.Holo.Light.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_otauc</item>
+    </style>
+
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.Otauc.Widget" parent="@android:style/Theme.Holo">
+        <item name="android:popupMenuStyle">@style/PopupMenu.Otauc</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Otauc</item>
+    </style>
 </resources>
