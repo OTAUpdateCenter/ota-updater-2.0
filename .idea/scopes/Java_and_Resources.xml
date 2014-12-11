@@ -1,3 +1,0 @@
-<component name="DependencyValidationManager">
-  <scope name="Java and Resources" pattern="src[app]:com.otaupdater.utils..*||src[app]:com.otaupdater..*||src[app]:layout..*||src[app]:menu..*||src[app]:values..*||src[app]:values-v11..*||src[app]:values-v21..*||src[app]:xml..*" />
-</component>
