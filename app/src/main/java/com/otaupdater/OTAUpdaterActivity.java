@@ -95,7 +95,7 @@ public class OTAUpdaterActivity extends BaseDownloadDialogActivity {
         final Context context = getApplicationContext();
         cfg = Config.getInstance(context);
 
-        if (!cfg.hasProKey()) {
+        /* if (!cfg.hasProKey()) {
             bindService(new Intent("com.android.vending.billing.InAppBillingService.BIND"),
                     billingSrvConn = new ServiceConnection() {
                         @Override
@@ -130,7 +130,7 @@ public class OTAUpdaterActivity extends BaseDownloadDialogActivity {
                             billingSrvConn = null;
                         }
                     }, Context.BIND_AUTO_CREATE);
-        }
+        } */
 
         boolean data = Utils.dataAvailable(this);
         boolean wifi = Utils.wifiConnected(this);
